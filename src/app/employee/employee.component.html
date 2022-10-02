@@ -1,0 +1,24 @@
+<div *ngIf="employee">
+    <h2>{{ employee.name }} Details</h2>
+    <div>
+        <label for="employee-name">Employee name: </label>
+        <input id="employee-name" #employeeName [ngModel]="employee.name" (ngModelChange)="onEmployeeNameChange($event)" />
+    </div>
+
+    <hr>
+    <p>Dependents</p>
+    <div *ngFor="let dependent of employee.dependents">
+        {{ dependent.name }}
+    </div>
+    <label for="new-dependent">Dependent name: </label>
+    <input id="new-dependent" #dependentName />
+      <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" (click)="addDependent(dependentName.value); dependentName.value=''">
+        Add dependent
+    </button>
+
+    <hr>
+    <div>Annual benefit deduction: {{ annualBenefitDeduction | currency }}</div>
+    <div>Deduction per pay period: {{ payPeriodBenefitDeduction | currency }}</div>
+
+</div>
